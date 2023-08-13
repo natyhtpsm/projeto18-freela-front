@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -46,7 +47,7 @@ const Home = () => {
             setStatus('');
             setPrice('');
             setPhoneSeller('');
-            setShowForm(false); // Fechar o formulário após a criação
+            setShowForm(false); 
         } catch (error) {
             console.error('Erro ao criar produto:', error);
         }
