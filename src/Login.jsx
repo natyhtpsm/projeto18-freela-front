@@ -6,7 +6,6 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Aqui você deve adicionar a lógica para autenticar o usuário
   };
 
   return (
