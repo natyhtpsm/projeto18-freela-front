@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Importe o useNavigate
 import styled from 'styled-components';
 import AuthContext from './Context';
-import LogoImage from './assets/mecansei2.png'; // Importe a imagem da logo
+import LogoImage from './assets/mecansei2.png';
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ const HeaderContainer = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 120px; /* Ajuste o tamanho da logo conforme necessário */
+  width: 120px;
 `;
 
 const Button = styled.button`
@@ -30,16 +30,22 @@ const Button = styled.button`
 `;
 
 const Header = () => {
-  const { setUser } = useContext(AuthContext);
+  const { handleLogout } = useContext(AuthContext);
+  const navigate = useNavigate(); 
 
-  const handleLogout = () => {
-    setUser(null);
+  const handleLogoutClick = async () => {
+    try {
+      await handleLogout(); 
+      navigate('/'); 
+    } catch (error) {
+      console.error('Erro ao efetuar logout:', error);
+    }
   };
 
   return (
     <HeaderContainer>
-      <Button onClick={handleLogout}>Logout</Button>
-      <Logo src={LogoImage} alt="Logo da Empresa" /> {/* Adicione o Logo com a imagem */}
+      <Button onClick={handleLogoutClick}>Logout</Button>
+      <Logo src={LogoImage} alt="Logo da Empresa" />
       <Link to="/meus-produtos">
         <Button>Meus Produtos</Button>
       </Link>
