@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import AuthContext from './Context';
+import Header from './Header';
+import styled from 'styled-components';
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
@@ -36,62 +38,123 @@ const MyProducts = () => {
       ...prevState,
       [productId]: newStatus,
     }));
-
+  
     try {
-        await axios.put(
-          `${url}/atualizar/${productId}`, // Correção: /atualizar/${productId} em vez de /atualizar/${productId}
-          { newStatus },
-          {
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-            },
-          }
-        );
-      } catch (error) {
-        console.error('Erro ao atualizar status do produto:', error);
+      await axios.put(
+        `${url}/atualizar/${productId}`,
+        { newStatus }, 
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.error('Erro ao atualizar status do produto:', error);
     }
   };
-
-
+  
   return (
-    <div>
+    <Container>
+        <Header></Header>
       <h1>Meus Produtos</h1>
-      <ul>
+      <ProductList>
         {products.map(product => (
-          <li key={product.id}>
-            <div>
-              <img src={product.photo} alt={product.name} />
-            </div>
-            <div>
-              <h2>{product.name}</h2>
-              <p>{product.description}</p>
-              <p>Categoria: {product.category}</p>
-              <p>
+          <ProductItem key={product.id}>
+            <ProductImage src={product.photo} alt={product.name} />
+            <ProductDetails>
+              <ProductName>{product.name}</ProductName>
+              <ProductDescription>{product.description}</ProductDescription>
+              <ProductCategory>Categoria: {product.category}</ProductCategory>
+              <ProductStatus>
                 Status:
-                <label>
+                <StatusLabel checked={selectedStatus[product.id] === 'Disponível'}>
                   <input
                     type="checkbox"
                     checked={selectedStatus[product.id] === 'Disponível'}
                     onChange={() => handleStatusChange(product.id, 'Disponível')}
                   />
                   Disponível
-                </label>
-                <label>
+                </StatusLabel>
+                <StatusLabel checked={selectedStatus[product.id] === 'Não disponível'}>
                   <input
                     type="checkbox"
                     checked={selectedStatus[product.id] === 'Não disponível'}
                     onChange={() => handleStatusChange(product.id, 'Não disponível')}
                   />
                   Não disponível
-                </label>
-              </p>
-              <p>Preço: R$ {product.price}</p>
-            </div>
-          </li>
+                </StatusLabel>
+              </ProductStatus>
+              <ProductPrice>Preço: R$ {product.price}</ProductPrice>
+            </ProductDetails>
+          </ProductItem>
         ))}
-      </ul>
-    </div>
+      </ProductList>
+    </Container>
   );
 };
 
 export default MyProducts;
+
+const Container = styled.div`
+text-align: center;
+h1{
+    font-size: 50px;
+    color: #ff6f61;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+`;
+
+const ProductList = styled.ul`
+  list-style: none;
+  padding: 0;
+`;
+
+const ProductItem = styled.li`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+`;
+
+const ProductImage = styled.img`
+  height: 200px;
+
+  width: 200px;
+
+`;
+
+const ProductDetails = styled.div`
+  flex-grow: 1;
+  
+`;
+
+const ProductName = styled.h2`
+  font-size: 24px;
+  margin-bottom: 5px;
+`;
+
+const ProductDescription = styled.p`
+  font-size: 16px;
+  margin-bottom: 5px;
+`;
+
+const ProductCategory = styled.p`
+  font-size: 16px;
+  margin-bottom: 5px;
+`;
+
+const ProductStatus = styled.p`
+  font-size: 16px;
+  margin-bottom: 5px;
+`;
+
+const StatusLabel = styled.label`
+  margin-right: 10px;
+  color: ${({ checked }) => (checked ? 'green' : 'red')};
+`;
+
+const ProductPrice = styled.p`
+  font-size: 16px;
+`;

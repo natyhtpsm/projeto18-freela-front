@@ -5,21 +5,14 @@ import AuthContext from './Context';
 import LogoImage from './assets/mecansei2.png';
 
 const Header = () => {
-  const { handleLogout } = useContext(AuthContext);
   const navigate = useNavigate(); 
-
-  const handleLogoutClick = async () => {
-    try {
-      await handleLogout(); 
-      navigate('/'); 
-    } catch (error) {
-      console.error('Erro ao efetuar logout:', error);
-    }
+  const handleHome = async () => {
+    navigate('/home'); 
   };
 
   return (
     <HeaderContainer>
-      <Button onClick={handleLogoutClick}>Logout</Button>
+      <Button onClick={handleHome}>Homepage</Button>
       <Logo src={LogoImage} alt="Logo da Empresa" />
       <Link to="/meus-produtos">
         <Button>Meus Produtos</Button>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-
-
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const Cadastro = () => {
   const [name, setNome] = useState('');
   const [cpf, setCpf] = useState('');
@@ -10,6 +10,7 @@ const Cadastro = () => {
   const [email, setEmail] = useState('');
   const [password, setSenha] = useState('');
   const url =  'http://localhost:4000';
+  const navigate = useNavigate();
 
   const handleCadastro = async (e) => {
     e.preventDefault();
@@ -20,6 +21,7 @@ const Cadastro = () => {
         email,
         password
       });
+      navigate("/");
       console.log('Usuário cadastrado:', response.data);
     } catch (error) {
       console.error('Erro ao cadastrar usuário:', error);
@@ -46,7 +48,8 @@ const Cadastro = () => {
         <label>Senha:</label>
         <input type="password" value={password} onChange={(e) => setSenha(e.target.value)} required />
         
-        <button type="submit">Cadastrar</button>
+        <button type="submit" onClick={handleCadastro}>Cadastrar</button>
+        <LoginLink to="/">Já tem uma conta? Entre aqui</LoginLink>
       </CadastroForm>
     </CadastroContainer>
   );
@@ -101,5 +104,16 @@ const CadastroForm = styled.form`
     &:hover {
       background-color: #ff4f3b;
     }
+  }
+`;
+const LoginLink = styled(Link)`
+  margin-top: 16px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #ff6f61;
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
   }
 `;

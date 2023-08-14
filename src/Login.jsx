@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import AuthContext from './Context';
+import LogoImage from './assets/mecansei.png';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -40,6 +41,7 @@ const Login = () => {
 
   return (
     <LoginContainer>
+      <Logo src={LogoImage} alt="Logo da Empresa"></Logo>
       <h1>Login</h1>
       <LoginForm onSubmit={handleLogin}>
         <label>E-mail:</label>
@@ -59,17 +61,22 @@ const Login = () => {
 
 export default Login;
 
+const Logo = styled.img`
+  height: 230px;
+  width: 230px;
 
-
+`
 const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #f2f2f2;
+  background-color: #white;
   h1{
-    color: #ff6f61
+    font-size: 50px;
+    color: #ff6f61;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   }
 `;
 
