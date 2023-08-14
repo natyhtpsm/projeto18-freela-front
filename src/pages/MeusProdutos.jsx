@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import AuthContext from './Context';
-import Header from './Header';
+import AuthContext from '../constants/Context';
+import Header from '../components/Header';
 import styled from 'styled-components';
 
 const MyProducts = () => {

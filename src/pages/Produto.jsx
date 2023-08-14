@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-import Header from './Header';
+import Header from '../components/Header';
 
 const Produto = () => {
     const { id } = useParams();

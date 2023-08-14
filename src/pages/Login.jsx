@@ -2,8 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-import AuthContext from './Context';
-import LogoImage from './assets/mecansei.png';
+import AuthContext from '../constants/Context';
+import LogoImage from '../assets/mecansei.png';
 
 const Login = () => {
   const [email, setEmail] = useState('');

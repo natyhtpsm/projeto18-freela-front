@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Importe o useNavigate
 import styled from 'styled-components';
-import AuthContext from './Context';
-import LogoImage from './assets/mecansei2.png';
+import AuthContext from '../constants/Context';
+import LogoImage from '../assets/mecansei2.png';
 
 const Header = () => {
   const navigate = useNavigate(); 

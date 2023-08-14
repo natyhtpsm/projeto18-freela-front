@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { validateUser } from './Validate';
-import AuthContext from './Context';
-import { headersAuth } from './Autenticacao';
+import { validateUser } from '../constants/Validate';
+import AuthContext from '../constants/Context';
+import { headersAuth } from '../constants/Autenticacao';
 import styled from 'styled-components';
-import Header from './Header';
+import Header from '../components/Header';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
