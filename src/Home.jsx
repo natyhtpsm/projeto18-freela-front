@@ -5,6 +5,7 @@ import { validateUser } from './Validate';
 import AuthContext from './Context';
 import { headersAuth } from './Autenticacao';
 import styled from 'styled-components';
+import Header from './Header';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -65,10 +66,8 @@ const Home = () => {
   const availableProducts = products.filter((product) => product.status === 'Disponível');
   return (
     <HomeContainer>
+        <Header></Header>
       <h1>Produtos</h1>
-      <Link to="/meus-produtos">
-        <button>Meus produtos</button>
-      </Link>
       <ProductList>
         <h2>Lista de Produtos</h2>
         <ul>
