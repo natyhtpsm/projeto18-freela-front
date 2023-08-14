@@ -9,7 +9,7 @@ const Cadastro = () => {
   const [phone, setTelefone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setSenha] = useState('');
-  const url =  'http://localhost:4000';
+  const url = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
 
   const handleCadastro = async (e) => {

@@ -8,8 +8,7 @@ const Produto = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
     const [sellerInfo, setSellerInfo] = useState({});
-    const url = 'http://localhost:4000';
-
+    const url = import.meta.env.VITE_API_URL;
     useEffect(() => {
         const fetchProduct = async () => {
             try {

@@ -18,7 +18,7 @@ const Home = () => {
     const [price, setPrice] = useState('');
     const { user, setUser } = useContext(AuthContext);
 
-    const url = 'http://localhost:4000';
+    const url = import.meta.env.VITE_API_URL;
 
     const fetchProducts = async () => {
         try {

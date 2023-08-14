@@ -11,7 +11,7 @@ const Login = () => {
   const { setUser } = useContext(AuthContext);
   
   const navigate = useNavigate();
-  const url = 'http://localhost:4000';
+  const url = import.meta.env.VITE_API_URL;
 
   const handleLogin = async (e) => {
     e.preventDefault();

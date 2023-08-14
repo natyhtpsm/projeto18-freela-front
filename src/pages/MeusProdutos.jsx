@@ -8,7 +8,7 @@ const MyProducts = () => {
   const { user } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState({});
-  const url = 'http://localhost:4000';
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchMyProducts = async () => {
