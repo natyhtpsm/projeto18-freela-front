@@ -66,6 +66,9 @@ const Home = () => {
   return (
     <HomeContainer>
       <h1>Produtos</h1>
+      <Link to="/meus-produtos">
+        <button>Meus produtos</button>
+      </Link>
       <ProductList>
         <h2>Lista de Produtos</h2>
         <ul>

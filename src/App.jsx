@@ -5,6 +5,7 @@ import Cadastro from './Cadastro';
 import Home from './Home';
 import Produto from './Produto';
 import AuthContext from './Context';
+import MyProducts from './MeusProdutos';
 import { useState, useContext } from 'react';
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/home" element={<Home/>} />
             <Route path="/produto/:id" element={<Produto/>} />
+            <Route path="/meus-produtos" element={<MyProducts/>} />
           </Routes>
         </div>
         </Router>
