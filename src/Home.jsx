@@ -13,7 +13,7 @@ const Home = () => {
   const [description, setDescription] = useState('');
   const [photo, setPhoto] = useState('');
   const [category, setCategory] = useState('');
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('Disponível');
   const [price, setPrice] = useState('');
   const { user, setUser } = useContext(AuthContext);
 
@@ -62,14 +62,14 @@ const Home = () => {
     const isValidUser = (user !== 0 && user);
     isValidUser;
   }, [user]);
-
+  const availableProducts = products.filter((product) => product.status === 'Disponível');
   return (
     <HomeContainer>
       <h1>Produtos</h1>
       <ProductList>
         <h2>Lista de Produtos</h2>
         <ul>
-          {products.map(product => (
+          {availableProducts.map(product => (
             <ProductItem key={product.id}>
               <Link to={`/produto/${product.id}`}>
                 <ProductImage src={product.photo} alt={product.name} />
@@ -100,7 +100,24 @@ const Home = () => {
             <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} required /><br />
 
             <label>Status:</label>
-            <input type="text" value={status} onChange={(e) => setStatus(e.target.value)} required /><br />
+            <StatusCheckboxLabel>
+              Disponível
+              <StatusCheckbox
+                type="checkbox"
+                value="Disponível"
+                checked={status === 'Disponível'}
+                onChange={() => setStatus('Disponível')}
+              />
+            </StatusCheckboxLabel>
+            <StatusCheckboxLabel>
+              Não disponível
+              <StatusCheckbox
+                type="checkbox"
+                value="Não disponível"
+                checked={status === 'Não disponível'}
+                onChange={() => setStatus('Não disponível')}
+              />
+            </StatusCheckboxLabel>
 
             <label>Preço:</label>
             <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} required /><br />
@@ -137,7 +154,7 @@ const ProductItem = styled.li`
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 `;
-
+const StatusButton = styled.button``;
 const ProductImage = styled.img`
   width: 100px;
   height: 100px;
@@ -192,4 +209,12 @@ const CreateProductButton = styled.button`
   &:hover {
     background-color: #ff4f3b;
   }
+`;
+
+const StatusCheckboxLabel = styled.label`
+  /* Estilos do rótulo da caixa de marcação de status */
+`;
+
+const StatusCheckbox = styled.input`
+  /* Estilos da caixa de marcação de status */
 `;
