@@ -68,6 +68,9 @@ const LoginContainer = styled.div`
   justify-content: center;
   min-height: 100vh;
   background-color: #f2f2f2;
+  h1{
+    color: #ff6f61
+  }
 `;
 
 const LoginForm = styled.form`
