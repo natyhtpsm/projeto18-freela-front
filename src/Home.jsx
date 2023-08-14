@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { validateUser } from './Validate';
+import AuthContext from './Context';
+import { headersAuth } from './Autenticacao';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -11,6 +14,8 @@ const Home = () => {
   const [category, setCategory] = useState('');
   const [status, setStatus] = useState('');
   const [price, setPrice] = useState('');
+  const { user, setUser } = useContext(AuthContext);
+
 
   const url = 'http://localhost:4000';
 
@@ -22,19 +27,18 @@ const Home = () => {
       console.error('Erro ao buscar produtos:', error);
     }
   };
-
+  
   const handleCreateProduct = async (e) => {
     e.preventDefault();
+    const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+    };
+    console.log(config);
 
     try {
-      await axios.post(url + '/produto', {
-        name,
-        description,
-        photo,
-        category,
-        status,
-        price
-      });
+      await axios.post(url + '/produto', {name,description,photo,category,status,price}, config);
 
       fetchProducts();
       setName('');
@@ -52,6 +56,12 @@ const Home = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    validateUser(user, setUser);  
+    const isValidUser = (user !== 0 && user);
+    isValidUser;
+  }, [user]);
 
   return (
     <div>

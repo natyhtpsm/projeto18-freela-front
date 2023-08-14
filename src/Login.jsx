@@ -1,29 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
+import AuthContext from './Context';
 
 const Login = () => {
   const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [password, setpassword] = useState('');
+  const { setUser } = useContext(AuthContext);
   
   const navigate = useNavigate();
   const url = 'http://localhost:4000';
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    const login = { email: email, password: password };
+    axios
+    .post(url+"/", login)
+    .then((res) => {
+      const newUser = {
+        token: res.data.token,
+      };
 
-    try {
-      const response = await axios.post(url + '/', {
-        email,
-        password: senha
-      });
+      const newIdUser = {
+        idUser: res.data.userId,
+      };
+      setUser(newUser);
+      localStorage.setItem("user", JSON.stringify(newUser));
 
-      console.log('Login bem-sucedido:', response.data);
-      navigate('/home');
-    } catch (error) {
-      console.error('Erro ao fazer login:', error);
-    }
+      localStorage.setItem("idUser", JSON.stringify(newIdUser));
+      navigate("/home");
+    })
+    .catch((error) => {
+      console.log("erro em SignIn:", error);
+
+    });
+
   };
 
   return (
@@ -34,7 +46,7 @@ const Login = () => {
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         
         <label>Senha:</label>
-        <input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} required />
+        <input type="password" value={password} onChange={(e) => setpassword(e.target.value)} required />
         
         <button type="submit">Entrar</button>
       </LoginForm>

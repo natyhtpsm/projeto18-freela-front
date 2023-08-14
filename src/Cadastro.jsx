@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
+
 const Cadastro = () => {
   const [name, setNome] = useState('');
   const [cpf, setCpf] = useState('');
@@ -24,6 +25,7 @@ const Cadastro = () => {
       console.error('Erro ao cadastrar usuário:', error);
     }
   };
+
 
   return (
     <CadastroContainer>
