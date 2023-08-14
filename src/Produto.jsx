@@ -1,5 +1,3 @@
-// Página do produto clicado:
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -14,10 +12,8 @@ const Produto = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(`${url}/produto/${id}`);
-        setProduct(response.data);
-        const sellerId = response.data.id_seller;
-        const sellerResponse = await axios.get(`${url}/user-info/${sellerId}`);
-        setSellerInfo(sellerResponse.data);
+        setProduct(response.data.product); // Accessing the 'product' object
+        setSellerInfo(response.data.seller); // Accessing the 'seller' object
       } catch (error) {
         console.error('Erro ao buscar detalhes do produto:', error);
       }
@@ -36,7 +32,6 @@ const Produto = () => {
         <p>Preço: R$ {product.price}</p>
         <p>Categoria: {product.category}</p>
         <p>Status: {product.status}</p>
-        <p>Telefone do Vendedor: {product.phone_seller}</p>
 
         {/* Exibindo informações do vendedor */}
         <h2>Informações do Vendedor</h2>
