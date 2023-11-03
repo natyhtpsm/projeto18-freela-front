@@ -138,27 +138,28 @@ const Home = () => {
 export default Home;
 
 const ContainerBottom = styled.div`
-    margin-bottom: 50px;
-
-    button {
-        padding: 8px 16px;
-        background-color: #ff6f61;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    
-        &:hover {
-          background-color: #ff4f3b;
-        }
-      }
+  margin-bottom: 50px;
+  button {
+    padding: 8px 16px;
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: #ff4f3b;
+    }
+  }
 `
 
 const HomeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  background-color: #f2f2f2;
   h1{
+    margin-top: 100px;
     font-size: 50px;
     color: #ff6f61;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
@@ -168,9 +169,7 @@ const HomeContainer = styled.div`
     color: #ff6f61;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   }
-
-
-  min-height: 100vh;
+  
 `;
 
 const ProductList = styled.div`
@@ -179,16 +178,14 @@ const ProductList = styled.div`
   flex-direction: column;
   align-itens: center;
   justify-content: center;
-    margin-left: 33vw;
-  
 `;
 
 const ProductItem = styled.li`
   display: flex;
   align-items: center;
   flex-direction: column;
-    width: 300px;
-    height: 300px;
+  width: 300px;
+  height: 300px;
   margin-bottom: 20px;
   div{
     color: black;
@@ -196,9 +193,7 @@ const ProductItem = styled.li`
   }
   Link{
     text-decoration: none;
-
   }
-
   background-color: white;
   padding: 10px;
   border-radius: 10px;
@@ -255,21 +250,20 @@ const CreateProductButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-
   &:hover {
     background-color: #ff4f3b;
   }
 `;
 
 const StatusCheckboxLabel = styled.label`
-  /* Estilos do rótulo da caixa de marcação de status */
+  
 `;
 
 const StatusCheckbox = styled.input`
-  /* Estilos da caixa de marcação de status */
+  
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: inherit; /* Isso vai herdar a cor do texto do elemento pai */
+  color: inherit; 
 `;

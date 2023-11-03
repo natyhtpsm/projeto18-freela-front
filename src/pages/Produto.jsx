@@ -59,6 +59,7 @@ const ProductContainer = styled.div`
   align-items: center;
   padding: 20px;
   h1{
+    margin-top: 100px;
     font-size: 50px;
     color: #ff6f61;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;

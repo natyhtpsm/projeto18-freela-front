@@ -99,6 +99,7 @@ export default MyProducts;
 const Container = styled.div`
 text-align: center;
 h1{
+  margin-top: 100px;
     font-size: 50px;
     color: #ff6f61;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;

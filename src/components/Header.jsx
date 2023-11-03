@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Importe o useNavigate
 import styled from 'styled-components';
-import AuthContext from '../constants/Context';
 import LogoImage from '../assets/mecansei2.png';
 
 const Header = () => {
@@ -26,13 +25,15 @@ export default Header;
 
 const HeaderContainer = styled.div`
   display: flex;
+  position: fixed;
   top: 0px;
   left: 0px;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: 10px 20px;
+  
   background-color: #ff6f61;
   color: white;
+  width: 100vw;
 `;
 
 const Logo = styled.img`
@@ -44,10 +45,9 @@ const Button = styled.button`
   color: white;
   border: none;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  font-size: 30px;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: opacity 0.3s ease;
-
   &:hover {
     opacity: 0.8;
   }
